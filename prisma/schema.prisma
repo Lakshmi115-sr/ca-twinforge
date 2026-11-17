@@ -1,0 +1,36 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./catwinforge.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Client {
+  id        String      @id @default(cuid())
+  name      String
+  pan       String      @unique
+  gstin     String?
+  createdAt DateTime    @default(now())
+  workspaces Workspace[]
+}
+
+model Workspace {
+  id        String    @id @default(cuid())
+  clientId  String
+  client    Client    @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  title     String    @default("New Audit Session")
+  messages  Message[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Message {
+  id          String    @id @default(cuid())
+  workspaceId String
+  workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  role        String    // "user" or "assistant"
+  content     String
+  createdAt DateTime  @default(now())
+}

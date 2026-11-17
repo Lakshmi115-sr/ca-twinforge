@@ -9,14 +9,20 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "marked": "^18.2.1",
     "next": "16.4.6",
+    "openai": "^7.57.0",
+    "pdf-parse": "^2.4.5",
+    "pdfjs-dist": "^6.5.438",
     "react": "19.3.0",
     "react-dom": "19.3.0"
   },
   "devDependencies": {
+    "@prisma/client": "^5.22.0",
     "@tailwindcss/turbopack": "4.3.3",
     "eslint": "^9",
     "eslint-config-next": "16.4.6",
+    "prisma": "^5.22.0",
     "tailwindcss": "4.3.3"
   }
 }
